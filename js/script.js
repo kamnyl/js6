@@ -1,3 +1,87 @@
+// LIBRARY ARRAY WITH OBJECTS
+let library = [
+  {
+    title: "Espresso lessons",
+    author: "Arno Ilgner",
+    isRead: true
+  },
+  {
+    title: "Wintering",
+    author: "Katherine May",
+    isRead: false
+  },
+  {
+    title: "Under floden",
+    author: "Staffan Nordstrand",
+    isRead: true
+  }
+];
+
+
+// ADD BOOK FUNCTION
+function addBook() {
+  let title = prompt("Title of the book:");
+  if (title.trim() === "" || title === null) {
+    alert("⚠️ Title is required");
+    return;
+  }
+
+  let author = prompt("Name of the author:");
+  if (author.trim() === "" || author === null) {
+    alert("⚠️ Author is required");
+    return;
+  }
+
+  let readAnswer = prompt('Is this book read? ("yes" or "no")').toLowerCase();
+  if (readAnswer === null || (readAnswer !== "yes" && readAnswer !== "no")) {
+    alert('⚠️ Answer with "yes" or "no".');
+    return;
+  }
+  const isRead = readAnswer === "yes";
+
+  const book = {
+    title,
+    author,
+    isRead
+  };
+
+  library.push(book);
+  alert(`✅ Added "${title}" by ${author} to your library.`);
+}
+
+
+// LIST BOOKS FUNCTION
+function listBooks() {
+
+  let message = "📚 Library \n\n";
+  library.forEach((book, order) => {
+    message += `${order + 1}. "${book.title}" by ${book.author} : `;
+
+    if (book.isRead) {
+      message += "Read ✔️ \n";
+    } else {
+      message += "Not read\n";
+    }
+  });
+  alert(message);
+}
+
+
+// MARK AS READ FUNCTION
+function markAsRead(title) {
+  const book = library.find(notRead => notRead.title.toLowerCase() === title.toLowerCase());
+
+  if (!book) {
+    alert(`⚠️ "${title}" not found.`);
+    return;
+  }
+
+  book.isRead = true;
+  alert(`✅ "${book.title}" is now marked as read.`);
+}
+
+      
+
 function books() {
     let running = true;
 
@@ -25,7 +109,7 @@ const choice = prompt(`
         break;
       case "4":
         running = false;
-        alert("Goodbye!");
+        alert("Goodbye! 😸");
         break;
       default:
         alert("Invalid choice.");
